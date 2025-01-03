@@ -30,9 +30,16 @@ class DataExplorer:
             self.test_data = pd.read_csv(self.test_path, low_memory=False)
             self.store_data = pd.read_csv(self.store_path, low_memory=False)
             self.logger.info("Datasets loaded successfully")
+            
+            # Print column names for debugging
+            self.logger.info(f"Train columns: {self.train_data.columns.tolist()}")
+            self.logger.info(f"Test columns: {self.test_data.columns.tolist()}")
+            self.logger.info(f"store columns: {self.store_data.columns.tolist()}")
+            
         except FileNotFoundError as e:
             self.logger.error(f"Error loading datasets: {e}")
             raise
+
 
     def merge_data(self):
         self.logger.info("Merging datasets")
@@ -47,16 +54,36 @@ class DataExplorer:
         missing_cols = self.train_data.columns[self.train_data.isnull().any()]
         self.logger.info(f"Columns with missing values: {missing_cols}")
 
-        imputer = SimpleImputer(strategy='median')
-        self.train_data[missing_cols] = imputer.fit_transform(self.train_data[missing_cols])
-        self.test_data[missing_cols] = imputer.transform(self.test_data[missing_cols])
-        self.logger.info("Missing values imputed")
+        # Separate numeric and categorical columns
+        numeric_cols = self.train_data.select_dtypes(include=np.number).columns
+        categorical_cols = self.train_data.select_dtypes(include='object').columns
+
+        # Impute missing values for numeric columns
+        if len(numeric_cols) > 0:
+            # Fit the imputer only on numeric columns that exist in both datasets
+            numeric_cols_fit = [col for col in numeric_cols if col in self.test_data.columns]
+            if numeric_cols_fit:
+                imputer = SimpleImputer(strategy='median')
+                self.train_data[numeric_cols_fit] = imputer.fit_transform(self.train_data[numeric_cols_fit])
+                self.test_data[numeric_cols_fit] = imputer.transform(self.test_data[numeric_cols_fit])
+                self.logger.info("Missing values imputed for numeric columns")
+
+        # Impute missing values for categorical columns (if needed)
+        if len(categorical_cols) > 0:
+            # Fit the imputer only on categorical columns that exist in both datasets
+            categorical_cols_fit = [col for col in categorical_cols if col in self.test_data.columns]
+            if categorical_cols_fit:
+                cat_imputer = SimpleImputer(strategy='most_frequent')
+                self.train_data[categorical_cols_fit] = cat_imputer.fit_transform(self.train_data[categorical_cols_fit])
+                self.test_data[categorical_cols_fit] = cat_imputer.transform(self.test_data[categorical_cols_fit])
+                self.logger.info("Missing values imputed for categorical columns")
 
         # Handle outliers
-        numeric_cols = self.train_data.select_dtypes(include=np.number).columns
         z_scores = np.abs(zscore(self.train_data[numeric_cols]))
         self.train_data = self.train_data[(z_scores < 3).all(axis=1)]
         self.logger.info("Outliers handled")
+
+
 
     def analyze_data(self):
         self.logger.info("Performing exploratory analysis")
@@ -122,9 +149,10 @@ if __name__ == "__main__":
         train_path="C:\\Users\\nadew\\10x\\week4\\technical doc\\Data-20250101T153622Z-001\\Data\\rossmann-store-sales\\store.csv", 
         test_path="C:\\Users\\nadew\\10x\\week4\\technical doc\\Data-20250101T153622Z-001\\Data\\rossmann-store-sales\\test.csv", 
         store_path= "C:\\Users\\nadew\\10x\\week4\\technical doc\\Data-20250101T153622Z-001\\Data\\rossmann-store-sales\\train.csv"
+    # )
+    # explorer.load_data()
+    # explorer.merge_data()
+    # explorer.clean_data()
+    # explorer.analyze_data()
+    # explorer.logger.info("Task 1 completed successfully")
     )
-    explorer.load_data()
-    explorer.merge_data()
-    explorer.clean_data()
-    explorer.analyze_data()
-    explorer.logger.info("Task 1 completed successfully")
