@@ -1,3 +1,13 @@
 rmann-store-sales/
 rossmann-store-sales/
 
+# Ignore DVC-tracked data directories
+rossmann-store-sales/
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
