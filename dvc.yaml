@@ -1,0 +1,3 @@
+stages:
+  clean_data-d:
+    cmd: train.csv store.csv-o clean_train.csvpython clean_data.py

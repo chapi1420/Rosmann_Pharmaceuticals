@@ -1,2 +1,5 @@
 [core]
     autostage = true
+    remote = myremote
+['remote "myremote"']
+    url = C:\Users\nadew\10x\week4\data_store
