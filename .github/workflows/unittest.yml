@@ -4,16 +4,16 @@ on:
   push:
     branches:
       - main
-      -task1
+      - task1
   pull_request:
     branches:
       - master
-      -task1
+      - task1
 
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
