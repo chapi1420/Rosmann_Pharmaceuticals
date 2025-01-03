@@ -1,0 +1,25 @@
+{
+    "python.formatting.provider": "autopep8",
+    "python.formatting.autopep8Args": [
+        "--max-line-length=79"
+    ],
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "jupyter.enableIntelliSense": true,
+    "jupyter.autoComplete": true,
+    "jupyter.sendSelectionToInteractiveWindow": true,
+    "jupyter.runStartupCommands": [
+        "import numpy as np",
+        "import pandas as pd",
+        "import matplotlib.pyplot as plt",
+        "import seaborn as sns",
+        "import warnings",
+        "warnings.filterwarnings('ignore')"
+    ]
+}
