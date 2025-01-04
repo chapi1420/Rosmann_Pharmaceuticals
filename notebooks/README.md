@@ -22,37 +22,46 @@ This directory contains Jupyter notebooks used for data exploration, analysis, a
   - Visualizing sales trends, promotions, and seasonal effects
   - Analyzing correlations between features
 
+### 2. Data Preprocessing
 
-### 2. Machine Learning Modeling
+- **Filename**: `data_preprocessing.ipynb`
+- **Description**: This notebook focuses on preparing the data for machine learning models. It includes feature engineering and scaling.
+- **Key Tasks**:
+  - Converting categorical variables to numeric
+  - Handling NaN values and outliers
+  - Feature extraction from datetime columns
+  - Scaling features using StandardScaler
 
-- **Filename**: `03_machine_learning_modeling.ipynb`
+### 3. Machine Learning Modeling
+
+- **Filename**: `machine_learning_modeling.ipynb`
 - **Description**: This notebook implements various machine learning algorithms to predict store sales. It utilizes scikit-learn pipelines for modularity.
 - **Key Tasks**:
   - Training models such as Random Forest and Gradient Boosting
   - Hyperparameter tuning and cross-validation
   - Evaluating model performance using chosen metrics
 
-### 3. Deep Learning Modeling
+### 4. Deep Learning Modeling
 
-- **Filename**: `04_deep_learning_modeling.ipynb`
+- **Filename**: `deep_learning_modeling.ipynb`
 - **Description**: This notebook builds a Long Short-Term Memory (LSTM) model to predict sales based on time series data.
 - **Key Tasks**:
   - Preparing time series data for LSTM
   - Training the LSTM model using TensorFlow or PyTorch
   - Evaluating model performance and making predictions
 
-### 4. Model Evaluation and Post-Prediction Analysis
+### 5. Model Evaluation and Post-Prediction Analysis
 
-- **Filename**: `05_model_evaluation_and_analysis.ipynb`
+- **Filename**: `model_evaluation_and_analysis.ipynb`
 - **Description**: This notebook analyzes the results of the machine learning and deep learning models. It includes feature importance analysis and confidence interval estimation.
 - **Key Tasks**:
   - Visualizing feature importance
   - Estimating confidence intervals for predictions
   - Summarizing findings and insights
 
-### 5. API Integration
+### 6. API Integration
 
-- **Filename**: `06_api_integration.ipynb`
+- **Filename**: `api_integration.ipynb`
 - **Description**: This notebook demonstrates how to integrate the trained models into a REST API for real-time predictions.
 - **Key Tasks**:
   - Loading serialized models
