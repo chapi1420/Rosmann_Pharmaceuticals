@@ -62,6 +62,10 @@ class DataProcessor:
         self.X_train = self.X_train.drop(columns=[col for col in columns_to_drop if col in self.X_train.columns], axis=1)
         self.X_test = self.X_test.drop(columns=[col for col in columns_to_drop if col in self.X_test.columns], axis=1)
         self.X_test['sales'] = np.nan
+        
+        #save
+        self.train_df.to_csv('C:\\Users\\nadew\\10x\\week4\\Rosmann\\rossmann-store-sales\\processed_train_data.csv', index=False)
+        self.test_df.to_csv('C:\\Users\\nadew\\10x\\week4\\Rosmann\\rossmann-store-sales\\processed_test_data.csv', index=False)
 
 
 
