@@ -76,3 +76,8 @@
 2025-01-04 09:31:04 - INFO - Store columns: ['Store', 'StoreType', 'Assortment', 'CompetitionDistance', 'CompetitionOpenSinceMonth', 'CompetitionOpenSinceYear', 'Promo2', 'Promo2SinceWeek', 'Promo2SinceYear', 'PromoInterval']
 2025-01-04 09:31:06 - INFO - Train data shape: (1017209, 18)
 2025-01-04 09:31:06 - INFO - Test data shape: (0, 18)
+2025-01-05 10:58:07 - INFO - Train columns: ['Store', 'DayOfWeek', 'Date', 'Sales', 'Customers', 'Open', 'Promo', 'StateHoliday', 'SchoolHoliday']
+2025-01-05 10:58:07 - INFO - Test columns: ['Id', 'Store', 'DayOfWeek', 'Date', 'Open', 'Promo', 'StateHoliday', 'SchoolHoliday']
+2025-01-05 10:58:07 - INFO - Store columns: ['Store', 'StoreType', 'Assortment', 'CompetitionDistance', 'CompetitionOpenSinceMonth', 'CompetitionOpenSinceYear', 'Promo2', 'Promo2SinceWeek', 'Promo2SinceYear', 'PromoInterval']
+2025-01-05 10:58:09 - INFO - Train data shape: (1017209, 18)
+2025-01-05 10:58:09 - INFO - Test data shape: (0, 18)
