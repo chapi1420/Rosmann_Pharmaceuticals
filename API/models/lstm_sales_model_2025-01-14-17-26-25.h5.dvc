@@ -1,0 +1,5 @@
+outs:
+- md5: c50f880b973df864fc1304fd88b9123c
+  size: 41704
+  hash: md5
+  path: lstm_sales_model_2025-01-14-17-26-25.h5
