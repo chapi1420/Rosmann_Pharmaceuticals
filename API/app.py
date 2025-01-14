@@ -8,7 +8,7 @@ app = FastAPI(title="Sales Prediction API", description="API for real-time sales
 
 
 try:
-    model = joblib.load("models/sales_model_2025-01-09-01-27-25.pkl")
+    model = joblib.load("C:\\Users\\nadew\\10x\\week4\\notebooks\\sales_model_2025-01-14-17-04-56.pkl")
 except Exception as e:
     raise RuntimeError(f"Error loading the model: {e}")
 
