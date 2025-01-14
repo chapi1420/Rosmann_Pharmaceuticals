@@ -44,12 +44,12 @@ class SalesPrediction:
 
     def preprocess_data(self, data):
         logging.info("Preprocessing data...")
-        data['Date'] = pd.to_datetime(data['Date'])
-        data['Weekday'] = data['Date'].dt.weekday
+        data['Day'] = pd.to_datetime(data['Day'])
+        data['Weekday'] = data['Day'].dt.weekday
         data['IsWeekend'] = data['Weekday'].isin([5, 6]).astype(int)
-        data['Month'] = data['Date'].dt.month
-        data['Year'] = data['Date'].dt.year
-        data['MonthPhase'] = data['Date'].dt.day.apply(self._month_phase)
+        data['Month'] = data['Day'].dt.month
+        data['Year'] = data['Day'].dt.year
+        data['MonthPhase'] = data['Day'].dt.day.apply(self._month_phase)
 
         data.fillna({
             'CompetitionDistance': data['CompetitionDistance'].median(),
@@ -99,7 +99,7 @@ class SalesPrediction:
 
     def train_model(self):
         logging.info("Training model...")
-        X = self.train_data.drop(columns=['Sales', 'Date'])
+        X = self.train_data.drop(columns=['Sales', 'Day'])
         y = self.train_data['Sales']
         X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.3, random_state=42)
 
@@ -118,8 +118,8 @@ class SalesPrediction:
         logging.info("Training LSTM model...")
 
         # Prepare time series data
-        data = self.train_data[['Date', 'Sales']].copy()
-        data.set_index('Date', inplace=True)
+        data = self.train_data[['Day', 'Sales']].copy()
+        data.set_index('Day', inplace=True)
         data = data.sort_index()
 
         scaled_data = self.scaler.fit_transform(data)
