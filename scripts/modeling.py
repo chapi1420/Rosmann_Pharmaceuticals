@@ -136,9 +136,9 @@ class SalesPrediction:
 
         # Build LSTM model
         model = Sequential([
-            LSTM(50, activation='relu', input_shape=(X_train.shape[1], X_train.shape[2]), return_sequences=True),
+            LSTM(4, activation='relu', input_shape=(X_train.shape[1], X_train.shape[2]), return_sequences=True),
             Dropout(0.2),
-            LSTM(50, activation='relu'),
+            LSTM(4, activation='relu'),
             Dropout(0.2),
             Dense(1)
         ])
@@ -150,7 +150,7 @@ class SalesPrediction:
         model.fit(
             X_train, y_train,
             validation_data=(X_val, y_val),
-            epochs=50,
+            epochs=4,
             batch_size=32,
             callbacks=[early_stopping]
         )
